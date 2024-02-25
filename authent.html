@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page d'Authentification</title>
+    <link rel="stylesheet" href="./authent.css">
+</head>
+<body>
+    
+<div class="wrapper">
+    <div class="login_box">
+        <form onsubmit="return authenticate()">
+      <div class="login-header">
+        <span>Login </span>
+      </div>
+  
+      <div class="input_box">
+        <label for="user" class="label">Username</label></br></br>
+        <input type="text" id="user" class="input-field" required>
+        <i class="bx bx-user icon"></i>
+      </div>
+  
+      <div class="input_box">
+        <label for="pass" class="label">Password</label></br></br>
+        <input type="password" id="pass" class="input-field" required>
+        <i class="bx bx-lock-alt icon"></i>
+      </div>
+
+      <div class="input_box">
+        <button type="submit">Submit</button>
+     </div>
+
+      <div class="remember-forgot">
+        <div class="remember-me">
+          <input type="checkbox" id="remember">
+          <label for="remember">Remember me</label>
+        </div>
+    </form>
+      </div>
+      
+      <script>
+        document.querySelector('.input_box button[type="submit"]').addEventListener('click', function(event) {
+            event.preventDefault(); // Empêcher le formulaire de s'envoyer automatiquement
+    
+            // Récupérer les valeurs entrées par l'utilisateur
+            var usernameInput = document.getElementById('user').value;
+            var passwordInput = document.getElementById('pass').value;
+    
+            // Récupérer les données stockées dans localStorage
+            var storedUsername = localStorage.getItem('username');
+            var storedPassword = localStorage.getItem('password');
+            localStorage.setItem('username', 'houda');
+            localStorage.setItem('password', '12345');
+
+    
+            // Comparer les données saisies avec les données stockées
+            if(usernameInput === storedUsername && passwordInput === storedPassword) {
+                // Si les informations sont correctes
+                alert('Authentification réussie. Vous allez être redirigé.');
+                window.location.href = 'form.html'; // Remplacer 'nextPage.html' par l'URL de votre choix
+            } else {
+                // Si les informations sont incorrectes
+                alert('Erreur: Les informations d\'authentification sont incorrectes.');
+            }
+        });
+    </script>
+    
+    </div>
+  </div>  
+</body>
+</html>
